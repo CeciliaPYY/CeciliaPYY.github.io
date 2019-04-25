@@ -303,12 +303,12 @@
             <h2 id="创建新模块（以创建-library-为例）"><a href="#创建新模块（以创建-library-为例）" class="headerlink" title="创建新模块（以创建 library 为例）"></a>创建新模块（以创建 library 为例）</h2><ol>
 <li>点击 File &gt; New &gt; New Module；</li>
 <li>在出现的 Create New Module 窗口中，选择 Android Library；</li>
-<li>在 Configure your new module 表单中，输入下列详情：<br><img src="//ceciliapyy.github.io/2019/04/25/test/新建module.png" alt="test"></li>
+<li>在 Configure your new module 表单中，输入下列详情：<br><img src="//ceciliapyy.github.io/2019/04/25/test/新建module.png" width="70%" height="70%"></li>
 <li>这样就成功地建立了一个名为 library 的 module。</li>
 </ol>
 <h2 id="导入新创建的模块"><a href="#导入新创建的模块" class="headerlink" title="导入新创建的模块"></a>导入新创建的模块</h2><ol>
-<li>在要作为lib导入的module 的build.gradle文件中添加一行 apply plugin: ‘com.android.library’ ；<br><img src="//ceciliapyy.github.io/2019/04/25/test/添加pulgin.png" alt="test"></li>
-<li>在要使用的module中将导入的module作为依赖库<br><img src="//ceciliapyy.github.io/2019/04/25/test/添加module.png" alt="test"></li>
+<li>在要作为lib导入的module 的build.gradle文件中添加一行 apply plugin: ‘com.android.library’ ；<br><img src="//ceciliapyy.github.io/2019/04/25/test/添加pulgin.png" width="70%" height="70%"></li>
+<li>在要使用的module中将导入的module作为依赖库<br><img src="//ceciliapyy.github.io/2019/04/25/test/添加module.png" width="70%" height="70%"></li>
 <li><p>在被添加 lib module 的 app module 的 build.gradle 中加入以下代码块</p>
 <figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">implementation <span class="keyword">project</span>(path: <span class="string">':library'</span>)</span><br></pre></td></tr></table></figure>
 </li>
