@@ -248,7 +248,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/05/05/paper3/" itemprop="url">paper3</a></h1>
+                <a class="post-title-link" href="/2019/05/05/paper3/" itemprop="url">MQTT 3.1.1 概述</a></h1>
         
 
         <div class="post-meta">
@@ -300,7 +300,52 @@
       
         
           
-            
+            <h1 id="术语"><a href="#术语" class="headerlink" title="术语"></a>术语</h1><p>本规范中用到的关键字<br>名称 | 关键字<br>—- | —<br>必须 | MUST，<br>不能 | MUST NOT，<br>要求 | REQUIRED，<br>将会 | SHALL，<br>不会 | SHALL NOT，<br>应该 | SHOULD，<br>不应该 | SHOULD NOT，<br>推荐 | RECOMMENDED，<br>可以 | MAY，<br>可选 | OPTIONAL </p>
+<h2 id="网络连接（Network-Connection）"><a href="#网络连接（Network-Connection）" class="headerlink" title="网络连接（Network Connection）"></a>网络连接（Network Connection）</h2><ol>
+<li>定义：MQTT 使用的底层传输协议基础设施；</li>
+<li>客户端使用它连接服务端，它提供有序的、可靠的、双向字节流传输；</li>
+</ol>
+<h2 id="应用消息（Application-Message）"><a href="#应用消息（Application-Message）" class="headerlink" title="应用消息（Application Message）"></a>应用消息（Application Message）</h2><ol>
+<li>定义：MQTT 通过网络传输的应用数据。</li>
+<li>应用消息通过 MQTT 传输时，它们有关联的服务质量(QoS)和主题 (Topic)。</li>
+</ol>
+<h2 id="客户端（Client）"><a href="#客户端（Client）" class="headerlink" title="客户端（Client）"></a>客户端（Client）</h2><ol>
+<li>定义：使用 MQTT 的程序或设备，客户端总是通过网络连接到服务端；</li>
+<li>作用：<pre><code>发布应用消息给其它相关的客户端；
+订阅以请求接受相关的应用消息；
+取消订阅以移除接受应用消息的请求；
+从服务端断开连接；
+</code></pre></li>
+</ol>
+<h2 id="服务端（Server）"><a href="#服务端（Server）" class="headerlink" title="服务端（Server）"></a>服务端（Server）</h2><ol>
+<li>定义：一个程序或设备，作为发送消息的客户端和请求订阅的客户端之间的中介；</li>
+<li>作用：<pre><code>接受来自客户端的网络连接；
+接受客户端发布的应用消息；
+处理客户端的订阅和取消订阅请求；
+转发应用消息给符合条件的客户端订阅；
+</code></pre></li>
+</ol>
+<h2 id="订阅（Subscription）"><a href="#订阅（Subscription）" class="headerlink" title="订阅（Subscription）"></a>订阅（Subscription）</h2><ol>
+<li>定义：订阅包含一个主题过滤器(Topic Filter)和一个最大的服务质量(QoS)等级；</li>
+<li>订阅与单个会话 (Session)关联，会话可以包含多于一个的订阅，会话的每个订阅都有一个不同的主题过滤器。</li>
+</ol>
+<h2 id="主题名（Topic-Name）"><a href="#主题名（Topic-Name）" class="headerlink" title="主题名（Topic Name）"></a>主题名（Topic Name）</h2><ol>
+<li>定义：附加在应用消息上的一个标签，服务端已知且与订阅匹配；</li>
+<li>服务端发送应用消息的一个副本给每一个匹配的客户端订阅；</li>
+</ol>
+<h2 id="主题过滤器"><a href="#主题过滤器" class="headerlink" title="主题过滤器"></a>主题过滤器</h2><ol>
+<li>定义：订阅中包含的一个表达式，用于表示相关的一个或多个主题；</li>
+<li>主题过滤器可以使用通配符；</li>
+</ol>
+<h2 id="会话"><a href="#会话" class="headerlink" title="会话"></a>会话</h2><ol>
+<li>定义：客户端和服务端之间的状态交互；</li>
+<li>一些会话持续时长与网络连接一样，另一些可以在客户端和服务端的多个连续网络连接间扩展；</li>
+</ol>
+<h2 id="控制报文（MQTT-Control-Packet）"><a href="#控制报文（MQTT-Control-Packet）" class="headerlink" title="控制报文（MQTT Control Packet）"></a>控制报文（MQTT Control Packet）</h2><ol>
+<li>定义：通过网络连接发送的信息数据包；</li>
+<li>MQTT 规范定义了十四种不同类型的控制报文，其中一个(PUBLISH 报 文)用于传输应用消息；</li>
+</ol>
+<h1 id="数据表示"><a href="#数据表示" class="headerlink" title="数据表示"></a>数据表示</h1>
           
         
       
@@ -680,7 +725,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
