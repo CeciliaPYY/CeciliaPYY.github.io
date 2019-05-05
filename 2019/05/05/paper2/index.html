@@ -79,20 +79,21 @@
 
 
 
-<meta name="description" content="简介MQTT 全称 MQ Telemetry Transport，主要用于在移动应用程序之间发送消息。移动应用程序通过调用 MQTT 库，使用 MQTT 来发送和接收消息。消息通过 MQTT 传递服务器进行交换。 适用情景该协议用于无线或低带宽网络。 MQTT 客户机和服务器可应对为移动应用程序可靠传递消息的复杂性，并将网络管理成本保持在较低水平。 作用 MQTT 应用程序在移动设备上运行，比如智">
+<meta name="description" content="简介MQTT 全称 MQ Telemetry Transport，主要用于在移动应用程序之间发送消息。移动应用程序通过调用 MQTT 库，使用 MQTT 来发送和接收消息。消息通过 MQTT 传递服务器进行交换。 适用情景该协议用于无线或低带宽网络。 MQTT 客户机和服务器可应对为移动应用程序可靠传递消息的复杂性，并将网络管理成本保持在较低水平。它的灵活性使得为 IoT 设备和服务的多样化应用场">
 <meta name="keywords" content="Android MQTT">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MQTT 简介">
 <meta property="og:url" content="https://ceciliapyy.github.io/2019/05/05/paper2/index.html">
 <meta property="og:site_name" content="Garden of Eden">
-<meta property="og:description" content="简介MQTT 全称 MQ Telemetry Transport，主要用于在移动应用程序之间发送消息。移动应用程序通过调用 MQTT 库，使用 MQTT 来发送和接收消息。消息通过 MQTT 传递服务器进行交换。 适用情景该协议用于无线或低带宽网络。 MQTT 客户机和服务器可应对为移动应用程序可靠传递消息的复杂性，并将网络管理成本保持在较低水平。 作用 MQTT 应用程序在移动设备上运行，比如智">
+<meta property="og:description" content="简介MQTT 全称 MQ Telemetry Transport，主要用于在移动应用程序之间发送消息。移动应用程序通过调用 MQTT 库，使用 MQTT 来发送和接收消息。消息通过 MQTT 传递服务器进行交换。 适用情景该协议用于无线或低带宽网络。 MQTT 客户机和服务器可应对为移动应用程序可靠传递消息的复杂性，并将网络管理成本保持在较低水平。它的灵活性使得为 IoT 设备和服务的多样化应用场">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://ceciliapyy.github.io/2019/05/05/paper2/power.png">
 <meta property="og:image" content="https://ceciliapyy.github.io/2019/05/05/paper2/hospital.png">
-<meta property="og:updated_time" content="2019-05-05T02:58:17.126Z">
+<meta property="og:image" content="https://ceciliapyy.github.io/2019/05/05/paper2/传感器.png">
+<meta property="og:updated_time" content="2019-05-05T08:28:38.100Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MQTT 简介">
-<meta name="twitter:description" content="简介MQTT 全称 MQ Telemetry Transport，主要用于在移动应用程序之间发送消息。移动应用程序通过调用 MQTT 库，使用 MQTT 来发送和接收消息。消息通过 MQTT 传递服务器进行交换。 适用情景该协议用于无线或低带宽网络。 MQTT 客户机和服务器可应对为移动应用程序可靠传递消息的复杂性，并将网络管理成本保持在较低水平。 作用 MQTT 应用程序在移动设备上运行，比如智">
+<meta name="twitter:description" content="简介MQTT 全称 MQ Telemetry Transport，主要用于在移动应用程序之间发送消息。移动应用程序通过调用 MQTT 库，使用 MQTT 来发送和接收消息。消息通过 MQTT 传递服务器进行交换。 适用情景该协议用于无线或低带宽网络。 MQTT 客户机和服务器可应对为移动应用程序可靠传递消息的复杂性，并将网络管理成本保持在较低水平。它的灵活性使得为 IoT 设备和服务的多样化应用场">
 <meta name="twitter:image" content="https://ceciliapyy.github.io/2019/05/05/paper2/power.png">
 
 
@@ -304,7 +305,13 @@
 
       
         <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>MQTT 全称 MQ Telemetry Transport，主要用于在移动应用程序之间发送消息。移动应用程序通过调用 MQTT 库，使用 MQTT 来发送和接收消息。消息通过 MQTT 传递服务器进行交换。</p>
-<h2 id="适用情景"><a href="#适用情景" class="headerlink" title="适用情景"></a>适用情景</h2><p>该协议用于无线或低带宽网络。 MQTT 客户机和服务器可应对为移动应用程序可靠传递消息的复杂性，并将网络管理成本保持在较低水平。</p>
+<h2 id="适用情景"><a href="#适用情景" class="headerlink" title="适用情景"></a>适用情景</h2><p>该协议用于无线或低带宽网络。 MQTT 客户机和服务器可应对为移动应用程序可靠传递消息的复杂性，并将网络管理成本保持在较低水平。它的灵活性使得为 IoT 设备和服务的多样化应用场景提供支持成为可能。</p>
+<h2 id="为什么选择-MQTT-而非-HTTP"><a href="#为什么选择-MQTT-而非-HTTP" class="headerlink" title="为什么选择 MQTT 而非 HTTP"></a>为什么选择 MQTT 而非 HTTP</h2><ol>
+<li>HTTP 是一种同步协议。客户端需要等待服务器响应。Web 浏览器具有这样的要求，但这样做的代价是牺牲了可伸缩性。在 IoT 领域，设备量多大以及很可能不可靠或高延迟的网络使得同步通信成为难题。异步消息协议更适合 IoT 应用程序。传感器发送读数，让网络确定将其传送到目标设备和服务的最佳路线和时间。</li>
+<li>HTTP 是单向的。客户端必须发起连接。在 IoT 应用程序中，设备或传感器通常是客户端，这意味着它们无法被动地接收来自网络的命令。</li>
+<li>HTTP 是一种 1-1 协议。客户端发出请求，服务器进行响应。但在 IoT 应用程序中，比较常见的是需要将消息传送到网络上的所有设备上，这样不仅困难，成本也是很高的。</li>
+<li>HTTP 是一种有许多标头和规则的重量级协议。不适合受限的网络。<br>除了 HTTP 外其实还有很多其他的协议，比如 AMQP（高级消息排队协议）和 XMPP（可扩展消息和状态协议）等。但是 AMQP 致力于在企业应用程序中实现可靠性和互操作性。它拥有庞大的特性集，但不适合资源受限的 IoT 应用程序。而 XMPP 是一种对等即时消息（IM）协议。它高度依赖于支持 IM 用例的特性，比如存在状态和介质连接。与 MQTT 相比，它在设备和网络上需要的资源都要多得多。</li>
+</ol>
 <h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><ol>
 <li>MQTT 应用程序在移动设备上运行，比如智能手机和平板电脑；</li>
 <li>MQTT 还用于遥测，以接收来自传感器的数据并对传感器进行远程控制；</li>
@@ -336,7 +343,160 @@
 <pre><code>* 遥测应用程序向医院和医生发送您的健康数据。
 * 可以基于健康状况数据的分析发送 MQTT 消息警报和反馈。
 * 有关更多信息，请参阅遥测场景：家庭患者监视。
-</code></pre>
+</code></pre><h2 id="发布和订阅模型"><a href="#发布和订阅模型" class="headerlink" title="发布和订阅模型"></a>发布和订阅模型</h2><p>MQTT 协议在网络中定义了两种实体类型：一个消息代理和一些客户端。代理是一个服务器，它从客户端接收所有消息，然后将这些消息路由到相关的目标客户端。客户端是能够与代理交互来发送和接收消息的任何事物。客户端可以是现场的 IoT 传感器，或者是数据中心内处理 IoT 数据的应用程序。</p>
+<p>其主要流程如下，</p>
+<ol>
+<li>客户端连接到代理。它可以订阅代理中的任何消息“主题”。此连接可以是简单的TCP/IP连接，也可以是用于发送敏感消息的加密 TLS 连接。</li>
+<li>客户端通过将消息和主题发送给代理，发布某个主体范围内的消息。</li>
+<li>代理然后将消息转发给所有订阅该主题的客户端。</li>
+</ol>
+<p>因为 MQTT 消息是按主题进行组织的，所以应用程序开发人员能灵活地指定某些客户端只能与某些消息进行交互。例如，传感器将在”sensor_data”主题范围内发布读数，并订阅”config_change”主题。将传感器数据保存到后端数据库中的数据处理应用程序会订阅”sensor_data”主题。管理控制台应用程序能接受系统管理员的命令来调整传感器的配置，比如灵敏度和采样频率，并将这些更改发布到”config_change”主题。<br><img src="//ceciliapyy.github.io/2019/05/05/paper2/传感器.png" width="40%" height="40%"></p>
+<p>此外，MQTT 是轻量级的。它有一个用来指定消息类型的简单标头，一个基于文本的主题，以及一个任意的二进制有效负载。应用程序可对有效负载采用任何数据格式，比如 JSON、XML、加密二进制或 Base64，只要目标客户端能够解析该有效负载。</p>
+<h2 id="了解-MQTT-协议"><a href="#了解-MQTT-协议" class="headerlink" title="了解 MQTT 协议"></a>了解 MQTT 协议</h2><p>MQTT 是一种连接协议，它制定了如何组织数据字节并通过 TCP/IP 网络传输它们。但实际上，我们并不需要了解这个连接协议。我们只需要知道，每条消息都有一个命令和数据有效负载。该命令定义消息类型（例如 CONNECT 消息或 SUBSCRIBE 消息）。所有 MQTT 库和工具都提供了直接处理这些消息的简单方法，并能自动填充一些必须的字段，比如消息和客户端 ID。<br>首先，客户端发送一条 CONNECT 消息来连接代理。CONNECT 消息要求建立从客户端到代理的连接。CONNECT 消息包含以下内容参数。</p>
+<p>表 1. CONNECT 消息参数</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">cleanSession</td>
+<td style="text-align:left">此标志指定连接是否是持久性的。持久会话会将所有订阅和可能丢失的消息（具体取决于 QoS） 都存储在代理中。</td>
+</tr>
+<tr>
+<td style="text-align:left">username</td>
+<td style="text-align:left">代理的身份验证和授权凭证。</td>
+</tr>
+<tr>
+<td style="text-align:left">password</td>
+<td style="text-align:left">代理的身份验证和授权凭证。</td>
+</tr>
+<tr>
+<td style="text-align:left">lastWillTopic</td>
+<td style="text-align:left">连接意外中断时，代理会自动向某个主题发送一条 “last will” 消息。</td>
+</tr>
+<tr>
+<td style="text-align:left">lastWillQos</td>
+<td style="text-align:left">“last will” 消息的 QoS。</td>
+</tr>
+<tr>
+<td style="text-align:left">lastWillMessage</td>
+<td style="text-align:left">“last will” 消息本身。</td>
+</tr>
+<tr>
+<td style="text-align:left">keepAlive</td>
+<td style="text-align:left">这是客户端通过 ping 代理来保持连接有效所需的时间间隔。</td>
+</tr>
+</tbody>
+</table>
+<p>客户端收到来自代理的一条 CONNACK 消息。CONNACK 消息包含以下内容参数。</p>
+<p>表 2. CONNACK 消息参数</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">sessionPresent</td>
+<td style="text-align:left">此参数表明连接是否已有一个持久会话。也就是说，连接已订阅了主题，而且会接收丢失的消息。</td>
+</tr>
+<tr>
+<td style="text-align:left">username</td>
+<td style="text-align:left">0 表示成功。其他值指出了失败的原因。</td>
+</tr>
+</tbody>
+</table>
+<p>建立连接后，客户端随后会向代理发送一条或多条 SUBSCRIBE 消息，表明它会从代理接收针对某些主题的消息。消息可以包含一个或多个重复的参数。</p>
+<p>表 3. SUBSCRIBE 消息参数</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">qos</td>
+<td style="text-align:left">qos（服务质量或 QoS）标志表明此主题范围内的消息传送到客户端所需的一致程度。 <br>值 0：不可靠，消息基本上仅传送一次，如果当时客户端不可用，则会丢失该消息。<br>值 1：消息应传送至少 1 次。<br>值 2：消息仅传送一次。</td>
+</tr>
+<tr>
+<td style="text-align:left">topic</td>
+<td style="text-align:left">要订阅的主题。一个主题可以有多个级别，级别之间用斜杠字符分隔。例如，“dw/demo” 和 “ibm/bluemix/mqtt” 是有效的主题。</td>
+</tr>
+</tbody>
+</table>
+<p>客户端成功订阅某个主题后，代理会返回一条 SUBACK 消息，其中包含一个或多个 returnCode 参数。</p>
+<p>表 4. SUBACK 消息参数</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">returnCode</td>
+<td style="text-align:left">SUBCRIBE 命令中的每个主题都有一个返回代码。返回值如下所示。<br> 值 0 - 2：成功达到相应的 QoS 级别。（参阅 表 3 进一步了解 QoS。）<br>值 128：失败。</td>
+</tr>
+</tbody>
+</table>
+<p>与 SUBSCRIBE 消息对应，客户端也可以通过 UNSUBSCRIBE 消息取消订阅一个或多个主题。</p>
+<p>表 5. UNSUBSCRIBE 消息参数</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">topic</td>
+<td style="text-align:left">此参数可重复用于多个主题。</td>
+</tr>
+</tbody>
+</table>
+<p>客户端可向代理发送 PUBLISH 消息。该消息包含一个主题和数据有效负载。代理然后将消息转发给所有订阅该主题的客户端。</p>
+<p>表 6. PUBLISH 消息参数</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">topicName</td>
+<td style="text-align:left">发布的消息的相关主题。</td>
+</tr>
+<tr>
+<td style="text-align:left">qos</td>
+<td style="text-align:left">消息传递的服务质量水平。</td>
+</tr>
+<tr>
+<td style="text-align:left">retainFlag</td>
+<td style="text-align:left">此标志表明代理是否保留该消息作为针对此主题的最后一条已知消息。</td>
+</tr>
+<tr>
+<td style="text-align:left">payload</td>
+<td style="text-align:left">消息中的实际数据。它可以是文本字符串或二进制大对象数据。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="技巧和解决方法"><a href="#技巧和解决方法" class="headerlink" title="技巧和解决方法"></a>技巧和解决方法</h2><p>MQTT 的优势在于它的简单性。在可以使用的主题类型或消息有效负载上没有任何限制。这支持一些有趣的用例。例如，请考虑以下问题：</p>
+<h3 id="如何使用-MQTT-发送-1-1-消息？"><a href="#如何使用-MQTT-发送-1-1-消息？" class="headerlink" title="如何使用 MQTT 发送 1-1 消息？"></a>如何使用 MQTT 发送 1-1 消息？</h3><p>双方可以协商使用一个特定于它们的主题。例如，主题名称可以包含两个客户端的 ID，以确保它的唯一性。</p>
+<h3 id="客户端如何传输它的存在状态？"><a href="#客户端如何传输它的存在状态？" class="headerlink" title="客户端如何传输它的存在状态？"></a>客户端如何传输它的存在状态？</h3><p>系统可以为”presence”主题协商一个命名约定。例如，“presence/client-id” 主题可以拥有客户端的存在状态信息。当客户端建立连接时，将该消息设置为 true，在断开连接时，该消息设置为 false。客户端也可以将一条 last will 消息设置为 false，以便在连接丢失时设置该消息。代理可以保留该消息，让新客户端能够读取该主题并找到存在状态。</p>
+<h3 id="如何保护通信？"><a href="#如何保护通信？" class="headerlink" title="如何保护通信？"></a>如何保护通信？</h3><p>客户端与代理的连接可以采用加密 TLS 连接，以保护传输中的数据。此外，因为 MQTT 协议对有效负载数据格式没有任何限制，所以系统可以协商一种加密方法和密钥更新机制。在这之后，有效负载中的所有内容可以是实际 JSON 或 XML 消息的加密二进制数据。</p>
+
       
     </div>
     
@@ -375,10 +535,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/05/05/paper3/" rel="prev" title="MQTT 3.1.1 概述">
-                MQTT 3.1.1 概述 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -455,7 +611,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -468,7 +624,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
@@ -501,7 +657,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#适用情景"><span class="nav-number">2.</span> <span class="nav-text">适用情景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#作用"><span class="nav-number">3.</span> <span class="nav-text">作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MQTT-客户机库特点"><span class="nav-number">4.</span> <span class="nav-text">MQTT 客户机库特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MQTT-协议特点"><span class="nav-number">5.</span> <span class="nav-text">MQTT 协议特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实际案例"><span class="nav-number">6.</span> <span class="nav-text">实际案例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#智慧电力度量"><span class="nav-number">6.1.</span> <span class="nav-text">智慧电力度量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#智慧健康状况监测"><span class="nav-number">6.2.</span> <span class="nav-text">智慧健康状况监测</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#适用情景"><span class="nav-number">2.</span> <span class="nav-text">适用情景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么选择-MQTT-而非-HTTP"><span class="nav-number">3.</span> <span class="nav-text">为什么选择 MQTT 而非 HTTP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#作用"><span class="nav-number">4.</span> <span class="nav-text">作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MQTT-客户机库特点"><span class="nav-number">5.</span> <span class="nav-text">MQTT 客户机库特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MQTT-协议特点"><span class="nav-number">6.</span> <span class="nav-text">MQTT 协议特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实际案例"><span class="nav-number">7.</span> <span class="nav-text">实际案例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#智慧电力度量"><span class="nav-number">7.1.</span> <span class="nav-text">智慧电力度量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#智慧健康状况监测"><span class="nav-number">7.2.</span> <span class="nav-text">智慧健康状况监测</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发布和订阅模型"><span class="nav-number">8.</span> <span class="nav-text">发布和订阅模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#了解-MQTT-协议"><span class="nav-number">9.</span> <span class="nav-text">了解 MQTT 协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#技巧和解决方法"><span class="nav-number">10.</span> <span class="nav-text">技巧和解决方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何使用-MQTT-发送-1-1-消息？"><span class="nav-number">10.1.</span> <span class="nav-text">如何使用 MQTT 发送 1-1 消息？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端如何传输它的存在状态？"><span class="nav-number">10.2.</span> <span class="nav-text">客户端如何传输它的存在状态？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何保护通信？"><span class="nav-number">10.3.</span> <span class="nav-text">如何保护通信？</span></a></li></ol></li></ol></div>
             
 
           </div>
