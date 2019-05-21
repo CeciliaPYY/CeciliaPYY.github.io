@@ -79,20 +79,20 @@
 
 
 
-<meta name="description" content="假设现在 $X$ 是一个 $n$ x $d$ 维度的矩阵，这个矩阵中存储着你的全部数据，其中 $n$ 代表数据量的大小，$d$ 代表变量个数。同时假设 $E$ 的每一列为协方差矩阵 $C = X^TX/n$ 的特征向量，$D$ 的对角线元素为 $C$ 的特征值。因此，我们有$$ C = EDE^T$$。 所以，我们对传统 PCA 白化的定义为 $$ W_{PCA} = D^{-1/2}E^T。 $">
+<meta name="description" content="假设现在 $X$ 是一个 $n$ x $d$ 维度的矩阵，这个矩阵中存储着你的全部数据，其中 $n$ 代表数据量的大小，$d$ 代表变量个数。同时假设 $E$ 的每一列为协方差矩阵 $C = X^TX/n$ 的特征向量，$D$ 的对角线元素为 $C$ 的特征值。因此，我们有$$ C = EDE^T。$$ 所以，我们对传统 PCA 白化的定义为 $$ W_{PCA} = D^{-1/2}E^T。 $">
 <meta name="keywords" content="深度学习, 机器学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="（转载）ZCA 白化 和 CPA 白化之间有什么区别？">
 <meta property="og:url" content="https://ceciliapyy.github.io/2019/05/21/paper4/index.html">
 <meta property="og:site_name" content="Garden of Eden">
-<meta property="og:description" content="假设现在 $X$ 是一个 $n$ x $d$ 维度的矩阵，这个矩阵中存储着你的全部数据，其中 $n$ 代表数据量的大小，$d$ 代表变量个数。同时假设 $E$ 的每一列为协方差矩阵 $C = X^TX/n$ 的特征向量，$D$ 的对角线元素为 $C$ 的特征值。因此，我们有$$ C = EDE^T$$。 所以，我们对传统 PCA 白化的定义为 $$ W_{PCA} = D^{-1/2}E^T。 $">
+<meta property="og:description" content="假设现在 $X$ 是一个 $n$ x $d$ 维度的矩阵，这个矩阵中存储着你的全部数据，其中 $n$ 代表数据量的大小，$d$ 代表变量个数。同时假设 $E$ 的每一列为协方差矩阵 $C = X^TX/n$ 的特征向量，$D$ 的对角线元素为 $C$ 的特征值。因此，我们有$$ C = EDE^T。$$ 所以，我们对传统 PCA 白化的定义为 $$ W_{PCA} = D^{-1/2}E^T。 $">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://ceciliapyy.github.io/2019/05/21/paper4/NgIqr.jpg">
 <meta property="og:image" content="https://ceciliapyy.github.io/2019/05/21/paper4/Ku87Q.png">
-<meta property="og:updated_time" content="2019-05-21T08:06:28.823Z">
+<meta property="og:updated_time" content="2019-05-21T08:23:11.954Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="（转载）ZCA 白化 和 CPA 白化之间有什么区别？">
-<meta name="twitter:description" content="假设现在 $X$ 是一个 $n$ x $d$ 维度的矩阵，这个矩阵中存储着你的全部数据，其中 $n$ 代表数据量的大小，$d$ 代表变量个数。同时假设 $E$ 的每一列为协方差矩阵 $C = X^TX/n$ 的特征向量，$D$ 的对角线元素为 $C$ 的特征值。因此，我们有$$ C = EDE^T$$。 所以，我们对传统 PCA 白化的定义为 $$ W_{PCA} = D^{-1/2}E^T。 $">
+<meta name="twitter:description" content="假设现在 $X$ 是一个 $n$ x $d$ 维度的矩阵，这个矩阵中存储着你的全部数据，其中 $n$ 代表数据量的大小，$d$ 代表变量个数。同时假设 $E$ 的每一列为协方差矩阵 $C = X^TX/n$ 的特征向量，$D$ 的对角线元素为 $C$ 的特征值。因此，我们有$$ C = EDE^T。$$ 所以，我们对传统 PCA 白化的定义为 $$ W_{PCA} = D^{-1/2}E^T。 $">
 <meta name="twitter:image" content="https://ceciliapyy.github.io/2019/05/21/paper4/NgIqr.jpg">
 
 
@@ -303,7 +303,7 @@
       
 
       
-        <p>假设现在 $X$ 是一个 $n$ x $d$ 维度的矩阵，这个矩阵中存储着你的全部数据，其中 $n$ 代表数据量的大小，$d$ 代表变量个数。同时假设 $E$ 的每一列为协方差矩阵 $C = X^TX/n$ 的特征向量，$D$ 的对角线元素为 $C$ 的特征值。因此，我们有$$ C = EDE^T$$。</p>
+        <p>假设现在 $X$ 是一个 $n$ x $d$ 维度的矩阵，这个矩阵中存储着你的全部数据，其中 $n$ 代表数据量的大小，$d$ 代表变量个数。同时假设 $E$ 的每一列为协方差矩阵 $C = X^TX/n$ 的特征向量，$D$ 的对角线元素为 $C$ 的特征值。因此，我们有$$ C = EDE^T。$$</p>
 <p>所以，我们对传统 PCA 白化的定义为 $$ W_{PCA} = D^{-1/2}E^T。 $$ </p>
 <p>但是这种 PCA 白化并不唯一。因为我们知道对任意白化数据旋转之后，其依然保持白化。即，$$ W = RW_{PCA}，$$其中 $R$ 为正交矩阵，此时 W 仍为白化数据。</p>
 <p>而在 ZCA 白化则选择了 $E$ 作为这个正交矩阵，即$$ W_{ZCA} = EW_{PCA} = ED^{-1/2}E^T。$$</p>
