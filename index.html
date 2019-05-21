@@ -305,9 +305,9 @@
 <p>但是这种 PCA 白化并不唯一。因为我们知道对任意白化数据旋转之后，其依然保持白化。即，$$ W = RW_{PCA}，$$其中 $R$ 为正交矩阵，此时 W 仍为白化数据。</p>
 <p>而在 ZCA 白化则选择了 $E$ 作为这个正交矩阵，即$$ W_{ZCA} = EW_{PCA} = ED^{-1/2}E^T。$$</p>
 <p>ZCA 白化也叫做马哈拉诺比斯变换，它有一个特点是经过 ZCA 白化后的数据与原始数据（至少在平方距离上）是很相近的。换句话说，若已知 $XA^{T}$ 白化的条件下，要求使得最小化$\left | X-XA^{T} \right |$ 的平方，则 $A = W_{ZCA}$。</p>
-<p><a href="./paper4/NgIqr.jpg">示意图1</a></p>
+<p><img src="//ceciliapyy.github.io/2019/05/21/paper4/NgIqr.jpg" width="70%" height="70%"></p>
 <p>从上面这张图我们可以有一个更深刻的了解。最左边的这张图展示了原始数据的分布与主成分轴，注意右上角部分分布着一个dark shading，它表示数据的方向。中间这张图展示了$W_{PCA}$的行数据，即原始数据的投影向量。对其白化之后，分布如中间偏下图所示，分布呈圆形，但是需要注意到的是它仍然呈倾斜状态， dark corner位于东边，而不是位于东北边（同原始数据一样）。第三张图展示了$W_{ZCA}$的行数据（它们并不相互正交）。白化之后，分布呈圆形，而且数据方向与原始数据方向一致。当然，如前所述，我们可以用$E$对$W_{PCA}$旋转得到$W_{ZCA}$。</p>
-<p><a href="./paper4/Ku87Q.png">示意图2</a></p>
+<p><img src="//ceciliapyy.github.io/2019/05/21/paper4/Ku87Q.png" width="70%" height="70%"></p>
 <p>ZCA 最早是在 Bell and Sejnowski 1996(<a href="https://www-n.oca.eu/Bijaoui/doc_ab/cardon/edge.pdf)中关于ICA" target="_blank" rel="noopener">https://www-n.oca.eu/Bijaoui/doc_ab/cardon/edge.pdf)中关于ICA</a>(Independent Component Analysis)部分提到的，它的全称是zero-phase component analysis。在图像处理中经常可以看到 ZCA 的身影。当将 PCA 运用到一批图片上的时候，主成分轴看起来像频率不断增加的傅里叶成分，可以从下图中的第一列看出，它们呈现出一种“全局感”。而当将 ZCA 运用到一批图片上的时候，结果则呈现出一种“局部感”。这主要是因为 ZCA 会尽可能少地对原始数据进行转换。</p>
 <p>更多关于 ZCA 滤波和用 ZCA 对图片进行转换的例子可以在Krizhevsky 2009年的Learning Multiple Layers of Features from Tiny Images(<a href="http://www.cs.toronto.edu/~kriz/learning-features-2009-TR.pdf)文章中知晓。回答此问题的作者认为从这些例子可以得出，ZCA" target="_blank" rel="noopener">http://www.cs.toronto.edu/~kriz/learning-features-2009-TR.pdf)文章中知晓。回答此问题的作者认为从这些例子可以得出，ZCA</a> 白化应该是优于 PCA 白化的。即， ZCA 白化过后的图片更像正常的图片，而 PCA 白化过后的图片则不是这样。这对于卷积神经网络的算法是很重要的，因为在 CNN 中相邻像素点是被同时处理的，因此 CNN 对于正常图片的局部特征依赖很大。对大多数机器学习算法而言，数据之间是需要保证绝对不相关的。</p>
 
