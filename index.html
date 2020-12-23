@@ -229,6 +229,339 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ceciliapyy.github.io/2020/12/23/U-Square-Net/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Peng Yuyan">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Garden of Eden">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/12/23/U-Square-Net/" itemprop="url">U Square Net</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-12-23T16:30:23+08:00">
+                2020-12-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li><p>资源链接：</p>
+<ol>
+<li>代码：<a href="https://github.com/NathanUA/U-2-Net" target="_blank" rel="noopener">https://github.com/NathanUA/U-2-Net</a></li>
+<li>论文：<a href="https://arxiv.org/pdf/2005.09007.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/2005.09007.pdf</a></li>
+<li>评价指标：<a href="https://github.com/NathanUA/Binary-Segmentation-Evaluation-Tool" target="_blank" rel="noopener">https://github.com/NathanUA/Binary-Segmentation-Evaluation-Tool</a></li>
+</ol>
+</li>
+<li><p>论文题目：U Square Net: Going Deeper with Nested U-Structure for Salient Object Detection</p>
+</li>
+<li><p>摘要：</p>
+<ol>
+<li>设计优点：<ol>
+<li>RSU block使得stage内可以捕获到更多scale的contextual的信息；</li>
+<li>RSU不会在计算量上增加过多主要得益于RSU内部的pooling操作；</li>
+</ol>
+</li>
+<li>模型特点：<ol>
+<li>U^{n} Net, where n = 2；</li>
+<li>可以train from scratch，且效果和那些用预训练的模型效果差不多甚至更好；</li>
+<li>提供了一个重版但效果最好和轻量版效果稍微差一点点的模型。</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>介绍：</p>
+<ol>
+<li>作者认为之前SOD的设计一直都存在一种<strong>common pattern</strong>，即借助于一些用于分类任务的预训练模型作为backbone进行SOD模型finetune的基础，但这其中存在的问题是，分类任务更关注的是全局语义信息而损失了SOD任务额外需要的<strong>局部细节信息和全局对比信息</strong>；此外，实际训练过程中的目标数据可能和ImageNet这种大型公开数据库的<strong>分布相差很大</strong>。由此，作者发问，是否可以设计出来一种模型结构，可以非常简单地<strong>train from scratch</strong>，同时可以媲美现有sota甚至超过它们。</li>
+<li>作者还觉得现在的SOD模型设计越来越复杂，而且为了加深网络模型不惜让feature map越来越步入到 low-res 的境地，而 high-res在SOD中是非常重要的。因此，作者再次发文，是否存在一种方法可以在 go deeper的同时，不过多损失resolution且计算量是可接受的。</li>
+</ol>
+<p>对于问题1，作者设计了nested U-Net这种结构，可以train from scratch；对于问题2，作者设计了RSU block，保证了intra-stage的特征图resolution的不变性，同时intra-stage内可以捕获多scale的特征。</p>
+</li>
+<li><p>RSU</p>
+<p>先上一张对比图，</p>
+<p><img src="//ceciliapyy.github.io/2020/12/23/U-Square-Net/卷积Block对比.png" width="70%" height="70%"></p>
+<p>作者认为图中a-c的卷积核主要以3*3为主，难以捕捉到全局信息，而d的话虽然想要通过引入dilated conv，但是计算量和显存都会增大；虽然PoolNet想要通过池化的方法降低计算量，但是作者认为将特征图直接upsample之后相加对high-res的特征是无益的。</p>
+<p><img src="//ceciliapyy.github.io/2020/12/23/U-Square-Net/RSU.png" width="50%" height="50%"></p>
+</li>
+</ol>
+<p>一个RSU block主要由三部分组成，如图所示，1为输入卷积层，2是一个U-Net like的操作，3是一个残差链接。更形象地表达方式如下图中的右图所示，</p>
+<p><img src="//ceciliapyy.github.io/2020/12/23/U-Square-Net/residualVSRSU.png" width="50%" height="50%"></p>
+<ol start="6">
+<li><p>U Square Net</p>
+<p>nested instead of stack.</p>
+</li>
+</ol>
+<p><img src="//ceciliapyy.github.io/2020/12/23/U-Square-Net/U2Net-Structure.png" width="50%" height="50%"></p>
+<p>从上图可以看出，模型结构主要由三部分组成，encoder（最左边）+decoder（中间，多监督）+fusion module（最右边）。</p>
+<p>需要注意的点，En_5和En_6的输入特征图res太低，如果进一步downsample的话，会损失context信息，因此作者这时候选择的是dilated conv。同理De_5。</p>
+<ol start="7">
+<li><p>损失函数</p>
+<p><img src="//ceciliapyy.github.io/2020/12/23/U-Square-Net/loss.png" width="50%" height="50%"></p>
+</li>
+</ol>
+<p>其中每一个loss都是交叉熵损失函数。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ceciliapyy.github.io/2019/05/22/paper5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Peng Yuyan">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Garden of Eden">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/22/paper5/" itemprop="url">Rethinking the Usage of Batch Normalization and Dropout in the Training of Deep Neural Networks 阅读笔记与实战</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-22T10:16:58+08:00">
+                2019-05-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="阅读札记"><a href="#阅读札记" class="headerlink" title="阅读札记"></a>阅读札记</h1><h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><ol>
+<li>结果：提出了一个全新的技巧提升神经网络训练效率；</li>
+<li>基本思想：对神经网络输入进行白化可以达到一个更快的收敛速度；</li>
+<li>做法：在每一个权重层前面引入了一个全新的 Independent-Component(IC) layer；</li>
+<li>寻找这种方式前遇到的问题：对输入进行白化处理是一个计算量很大的操作；</li>
+<li>具体的做法与结果：将两个流行的方法( Dropout 和 Batch Normalization )结合，最终使得神经元之间的互信息可以减小为原来的 $p^2$倍，相关系数可以减小为原来的$p$倍，最终实现了更稳定的训练流程，更快的收敛速度以及更好地表现；</li>
+</ol>
+<h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h2><ol>
+<li>一个重要的发现：神经系统的表征能力随着网络中独立神经元数量的增多而增强；</li>
+<li>independent component analysis (ICA) = zero-phase component analysis (ZCA) + rotates the whitened activations to obtain the independent ones；</li>
+<li>什么是 ZCA：可以参考我的上一篇文章 <a href="paper4.md">ZCA</a>；</li>
+<li>文中所谓的 Independent Component (IC) layer 指的是：{-BatchNorm-Dropout-}；</li>
+<li>IC layer 在需要放置在神经网络的什么位置：权重层之前，具体会做实验来验证；</li>
+<li>文章的两大贡献：<ul>
+<li>通过结合两种流行做法 BN 和 Dropout，提出了一种新的层 —— IC 层；并严格证明了 IC 层可以降低神经元之间的互信息和相关系数，最终加快了模型的收敛速度；</li>
+<li>除了理论证明，作者同时在 CIFAR10/100 以及 ILSVRC2012 数据集上进行了实验，结果显示 IC 层实现了更稳定的训练流程，更快的收敛速度以及更好地表现；</li>
+</ul>
+</li>
+</ol>
+<h2 id="2-Preliminary-the-Influence-of-Uncorrelated-Components"><a href="#2-Preliminary-the-Influence-of-Uncorrelated-Components" class="headerlink" title="2. Preliminary: the Influence of Uncorrelated Components"></a>2. Preliminary: the Influence of Uncorrelated Components</h2><p>为了简单起见，我们在这里考虑一个最基础的神经网络，它只由线性层组成。$A$ 记为近似函数的参数，输入为 $x$，输出为 $y$。以下是我们想要最小化的目标函数$$ min_A \Sigma_{i=1}^{n} \left | y_i - Ax_i \right | ，(1)$$ 那么基于梯度下降方法，最优方法中的 $A$ 必须满足 $$A \Sigma_{i=1}^{n} x_ix_i^T = \Sigma_{i=1}^{n} yx_i^T。 (2)$$</p>
+<p>那么，假设所有数据都位于局部子空间中，则$\Sigma_{i=1}^{n} x_ix_i^T$就可以由一个低维矩阵表示，这也就意味着存在多种方法来优化 Eq(2)。那么神经网络的训练过程就会变得很不稳定。此外，当我们用梯度下降法对 $A$ 进行优化时，它的收敛速度依赖于 $max(Eigen_i)/min(Eigen_i)$(其中，$Eigen_i$ 为海塞矩阵的特征值)。因此如果 $x_i$ 之间的相关性很小，那么收敛速度会大大提高。</p>
+<h2 id="3-Generating-Independent-Components-IC-Layer"><a href="#3-Generating-Independent-Components-IC-Layer" class="headerlink" title="3. Generating Independent Components: IC Layer"></a>3. Generating Independent Components: IC Layer</h2><p>由于 independent component analysis (ICA) = zero-phase component analysis (ZCA) + rotates the whitened activations。文中作者选择了 BN 来替代 ZCA，Dropout 来替代 rotates the whitened activations to obtain the independent ones。</p>
+<p>IC layer 在 Keras 中的实现也并不复杂。</p>
+<pre><code>from keras.layers.normalization import BatchNormalization as BatchNorm
+from keras.layers.core import Dropout
+
+def IC(inputs, p):
+    x = BatchNorm(inputs) # replace ZCA
+    x = Dropout(p)(x)   # replace rotation
+    return x
+</code></pre><p>下面主要讨论一下 Dropout 在这其中扮演的角色。</p>
+<h3 id="3-1-Mutual-Information-and-Entropy"><a href="#3-1-Mutual-Information-and-Entropy" class="headerlink" title="3.1  Mutual Information and Entropy"></a>3.1  Mutual Information and Entropy</h3><p>互信息可以用来度量两个信息源之间的依赖关系，即$$I(x;y) = \Sigma_(x,y) P(x,y) log\frac{P(x,y)}{P(x)P(y)}。$$也就是说只有当 $I(x;y) = 0$ 时，$x$和$y$才是独立的。假设有一个随机门$g_i$，它同$x_i$是相互独立的，它的作用是来修改标准激活值$x_i$，对于$g_i$，它以概率$p$保持为一个常数，其他情况下为0。</p>
+<p><strong>Theorem 1.</strong> 假设 $g_i$ 是由一个均值为$p$的伯努利分布产生的一系列独立的随机变量。设 $\hat{x_i} = g_ix_i$，那么有$$I(\hat{x_i};\hat{x_j}) = p^2 I(x_i;x_j), {\forall} i \neq j, $$ $$H(\hat{x_i}) = pH(x_i) + \epsilon_p, $$<br>其中，$H$ 代表香农熵，$\epsilon_p$代表伯努利分布的熵。</p>
+<p>接下来就是对定理一的证明了，如图所示。<br><a href="paper5/proof1.jpeg">证明1</a></p>
+<p>这样互信息就减少为原来的$p^2$倍了。</p>
+<p>那么我们再来看一下香农熵的变化。（这一部分的证明还有一部存疑，如果大家想通了可以告知我）<br><a href="paper5/proof2.jpeg">证明2</a></p>
+<h3 id="3-2-Correlation-Coefficient-and-Expectation"><a href="#3-2-Correlation-Coefficient-and-Expectation" class="headerlink" title="3.2. Correlation Coefficient and Expectation"></a>3.2. Correlation Coefficient and Expectation</h3><p>此部分进一步说明了 Dropout 在优化过程中的作用。<br>假设第 $i$ 个神经元与第 $j$ 个神经元的标准激活输出为$x_i$和$x_j$，则他们之间的相关系数可以表示为，$$c_{ij} = E(x_ix_j)。(4)$$ 那么经过 Dropout 操作之后，我们有$$\hat{c_{ij}} = \frac{1}{\sigma_i\sigma_j}E(g_ix_ig_jx_j)，(5)$$<br>其中，$\sigma_i = \sqrt{E(g_ix_i)^2}$表示$x_i$的标准差。</p>
+<p>有由于$g_i$和$x_i$之间相互独立，则我们有$\sigma_i^2 = Eg_i^2x_i^2 = Eg_i^2Ex_i^2 = p^2$。又因为 $g_i$ 之间是相互独立的，且与$x_i$相互独立，因此$g_ig_j$与$x_ix_j$之间相互独立，因此有$$E[(g_ig_j - v_{ij})(x_ix_j - \mu_{ij})] = 0， (6)$$<br>其中，$v_{ij}$和$\mu_{ij}$分别是$g_ig_j$与$x_ix_j$的均值，易得$v_{ij} = p^2$，$\mu_{ij} = 0$，因此Eq(6)可以变成$$E[(g_ig_j - p^2)x_ix_j] = 0 (7)$$<br>再结合(5)有，$$\hat{c_{ij}} = \frac{1}{\sigma_i\sigma_j}p^2E(x_ix_j) = pc_{ij}。(8)$$</p>
+<p>因此当引入 Dropout 操作之后，任意两个神经元之间的相关系数都减小到原来的 $p$ 倍。但是这种方法同样存在缺点，因为当引入 Dropout 操作时，$x_i$的均值就变成了$px_i$。这样就意味着，如果当我们为了使得神经元之间的相关性更小而选择更小的$p$时，我们同时也损失了更多的信息。</p>
+<h2 id="4-Experiments-and-Results"><a href="#4-Experiments-and-Results" class="headerlink" title="4. Experiments and Results"></a>4. Experiments and Results</h2><h3 id="4-1-Reformulating-ResNet-Architectures"><a href="#4-1-Reformulating-ResNet-Architectures" class="headerlink" title="4.1. Reformulating ResNet Architectures"></a>4.1. Reformulating ResNet Architectures</h3><p>这篇文章选择了 3 种不同的残差单元进行试验，每种的不通点在于它们的 short path，这样做主要是为了找到表现最好的残差单元。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://ceciliapyy.github.io/2019/05/21/paper4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -957,7 +1290,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -970,7 +1303,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
@@ -1007,7 +1340,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
