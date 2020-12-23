@@ -87,16 +87,17 @@
 <meta property="og:site_name" content="Garden of Eden">
 <meta property="og:description" content="资源链接：  代码：https://github.com/NathanUA/U-2-Net 论文：https://arxiv.org/pdf/2005.09007.pdf 评价指标：https://github.com/NathanUA/Binary-Segmentation-Evaluation-Tool   论文题目：U Square Net: Going Deeper with Neste">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="https://ceciliapyy.github.io/2020/12/23/U-Square-Net/unetVSunetp.png">
 <meta property="og:image" content="https://ceciliapyy.github.io/2020/12/23/U-Square-Net/卷积Block对比.png">
 <meta property="og:image" content="https://ceciliapyy.github.io/2020/12/23/U-Square-Net/RSU.png">
 <meta property="og:image" content="https://ceciliapyy.github.io/2020/12/23/U-Square-Net/residualVSRSU.png">
 <meta property="og:image" content="https://ceciliapyy.github.io/2020/12/23/U-Square-Net/U2Net-Structure.png">
 <meta property="og:image" content="https://ceciliapyy.github.io/2020/12/23/U-Square-Net/loss.png">
-<meta property="og:updated_time" content="2020-12-23T09:38:03.342Z">
+<meta property="og:updated_time" content="2020-12-23T09:54:36.083Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="U Square Net">
 <meta name="twitter:description" content="资源链接：  代码：https://github.com/NathanUA/U-2-Net 论文：https://arxiv.org/pdf/2005.09007.pdf 评价指标：https://github.com/NathanUA/Binary-Segmentation-Evaluation-Tool   论文题目：U Square Net: Going Deeper with Neste">
-<meta name="twitter:image" content="https://ceciliapyy.github.io/2020/12/23/U-Square-Net/卷积Block对比.png">
+<meta name="twitter:image" content="https://ceciliapyy.github.io/2020/12/23/U-Square-Net/unetVSunetp.png">
 
 
 
@@ -318,15 +319,21 @@
 </li>
 <li><p>摘要：</p>
 <ol>
-<li>设计优点：<ol>
+<li><p>设计优点：</p>
+<ol>
 <li>RSU block使得stage内可以捕获到更多scale的contextual的信息；</li>
 <li>RSU不会在计算量上增加过多主要得益于RSU内部的pooling操作；</li>
 </ol>
 </li>
-<li>模型特点：<ol>
-<li>U^{n} Net, where n = 2；</li>
-<li>可以train from scratch，且效果和那些用预训练的模型效果差不多甚至更好；</li>
-<li>提供了一个重版但效果最好和轻量版效果稍微差一点点的模型。</li>
+<li><p>模型特点：</p>
+<ol>
+<li><p>U^{n} Net, where n = 2；</p>
+</li>
+<li><p>可以train from scratch，且效果和那些用预训练的模型效果差不多甚至更好；</p>
+</li>
+<li><p>提供了一个重版但效果最好和轻量版效果稍微差一点点的模型，模型框架基本一致，主要在于通道参数不同。</p>
+<p><img src="//ceciliapyy.github.io/2020/12/23/U-Square-Net/unetVSunetp.png" width="70%" height="70%"></p>
+</li>
 </ol>
 </li>
 </ol>
