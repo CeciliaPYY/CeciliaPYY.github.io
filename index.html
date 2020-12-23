@@ -306,14 +306,11 @@
 <li>评价指标：<a href="https://github.com/NathanUA/Binary-Segmentation-Evaluation-Tool" target="_blank" rel="noopener">https://github.com/NathanUA/Binary-Segmentation-Evaluation-Tool</a></li>
 </ol>
 <h1 id="论文题目"><a href="#论文题目" class="headerlink" title="论文题目"></a>论文题目</h1><p>U Square Net: Going Deeper with Nested U-Structure for Salient Object Detection</p>
-<p>#摘要</p>
-<p>##设计优点</p>
-<ol>
+<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><h2 id="设计优点"><a href="#设计优点" class="headerlink" title="设计优点"></a>设计优点</h2><ol>
 <li>RSU block使得stage内可以捕获到更多scale的contextual的信息；</li>
 <li>RSU不会在计算量上增加过多主要得益于RSU内部的pooling操作；</li>
 </ol>
-<p>##模型特点</p>
-<ol>
+<h2 id="模型特点"><a href="#模型特点" class="headerlink" title="模型特点"></a>模型特点</h2><ol>
 <li><p>U^{n} Net, where n = 2；</p>
 </li>
 <li><p>可以train from scratch，且效果和那些用预训练的模型效果差不多甚至更好；</p>
@@ -322,26 +319,22 @@
 <p><img src="//ceciliapyy.github.io/2020/12/23/U-Square-Net/unetvsunetp.png" width="70%" height="70%"></p>
 </li>
 </ol>
-<p>#介绍</p>
-<ol>
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><ol>
 <li>作者认为之前SOD的设计一直都存在一种<strong>common pattern</strong>，即借助于一些用于分类任务的预训练模型作为backbone进行SOD模型finetune的基础，但这其中存在的问题是，分类任务更关注的是全局语义信息而损失了SOD任务额外需要的<strong>局部细节信息和全局对比信息</strong>；此外，实际训练过程中的目标数据可能和ImageNet这种大型公开数据库的<strong>分布相差很大</strong>。由此，作者发问，是否可以设计出来一种模型结构，可以非常简单地<strong>train from scratch</strong>，同时可以媲美现有sota甚至超过它们。</li>
 <li>作者还觉得现在的SOD模型设计越来越复杂，而且为了加深网络模型不惜让feature map越来越步入到 low-res 的境地，而 high-res在SOD中是非常重要的。因此，作者再次发文，是否存在一种方法可以在 go deeper的同时，不过多损失resolution且计算量是可接受的。</li>
 </ol>
 <p>对于问题1，作者设计了nested U-Net这种结构，可以train from scratch；对于问题2，作者设计了RSU block，保证了intra-stage的特征图resolution的不变性，同时intra-stage内可以捕获多scale的特征。</p>
-<p>#RSU Block</p>
-<p>先上一张对比图，</p>
+<h1 id="RSU-Block"><a href="#RSU-Block" class="headerlink" title="RSU Block"></a>RSU Block</h1><p>先上一张对比图，</p>
 <p><img src="//ceciliapyy.github.io/2020/12/23/U-Square-Net/卷积Block对比.png" width="70%" height="70%"></p>
 <p>作者认为图中a-c的卷积核主要以3*3为主，难以捕捉到全局信息，而d的话虽然想要通过引入dilated conv，但是计算量和显存都会增大；虽然PoolNet想要通过池化的方法降低计算量，但是作者认为将特征图直接upsample之后相加对high-res的特征是无益的。</p>
 <p><img src="//ceciliapyy.github.io/2020/12/23/U-Square-Net/RSU.png" width="50%" height="50%"></p>
 <p>一个RSU block主要由三部分组成，如图所示，1为输入卷积层，2是一个U-Net like的操作，3是一个残差链接。更形象地表达方式如下图中的右图所示，</p>
 <p><img src="//ceciliapyy.github.io/2020/12/23/U-Square-Net/residualVSRSU.png" width="50%" height="50%"></p>
-<p>#U Square Net</p>
-<p>nested instead of stack.</p>
+<h1 id="U-Square-Net"><a href="#U-Square-Net" class="headerlink" title="U Square Net"></a>U Square Net</h1><p>nested instead of stack.</p>
 <p><img src="//ceciliapyy.github.io/2020/12/23/U-Square-Net/U2Net-Structure.png" width="50%" height="50%"></p>
 <p>从上图可以看出，模型结构主要由三部分组成，encoder（最左边）+decoder（中间，多监督）+fusion module（最右边）。</p>
 <p>需要注意的点，En_5和En_6的输入特征图res太低，如果进一步downsample的话，会损失context信息，因此作者这时候选择的是dilated conv。同理De_5。</p>
-<p>#损失函数</p>
-<p><img src="//ceciliapyy.github.io/2020/12/23/U-Square-Net/loss.png" width="50%" height="50%"></p>
+<h1 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h1><p><img src="//ceciliapyy.github.io/2020/12/23/U-Square-Net/loss.png" width="50%" height="50%"></p>
 <p>其中每一个loss都是交叉熵损失函数。</p>
 
           
